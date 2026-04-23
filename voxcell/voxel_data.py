@@ -237,9 +237,9 @@ class VoxelData:
         `values` could be a single value or an iterable.
         """
         if isinstance(values, set):
-            # numpy.in1d expects an array-like object as second parameter
+            # numpy.isin expects an array-like object as second parameter
             values = list(values)
-        return np.count_nonzero(np.in1d(self.raw, values))
+        return np.count_nonzero(np.isin(self.raw, values))
 
     def volume(self, values):
         """Total volume of voxels with value from the given list.

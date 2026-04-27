@@ -9,7 +9,10 @@ description = "Voxcell is a small library to handle probability distributions th
 readme = {file = "README.rst", content-type = "text/x-rst"}
 license = "Apache-2.0"
 requires-python = ">=3.9"
-authors = [{name = "Blue Brain Project, EPFL"}]
+authors = [
+    {name = "Blue Brain Project, EPFL"},
+    { name = "Open Brain Institute" }
+]
 classifiers = [
     "Development Status :: 2 - Pre-Alpha",
     "Programming Language :: Python",
@@ -22,20 +25,20 @@ classifiers = [
     "Programming Language :: Python :: 3.14",
 ]
 dependencies = [
-    "h5py>=3.1.0",
-    "numpy>=1.9",
-    "pandas>=0.24.2",
-    "pynrrd>=1.1.0",
-    "requests>=2.18",
-    "scipy>=1.2.0",
+    "h5py",
+    "numpy",
+    "pandas",
+    "pynrrd",
+    "requests",
+    "scipy",
 ]
 
 [project.optional-dependencies]
 docs = ["sphinx-bluebrain-theme"]
 
 [project.urls]
-Homepage = "https://github.com/BlueBrain/voxcell"
-Download = "https://github.com/BlueBrain/voxcell"
+Homepage = "https://github.com/OpenBrainInstitute/voxcell"
+Download = "https://github.com/OpenBrainInstitute/voxcell"
 
 [tool.setuptools.packages.find]
 

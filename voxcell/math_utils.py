@@ -72,7 +72,7 @@ def angles_to_matrices(angles, axis):
     Returns:
         (N, 3, 3) array of rotation matrices.
     """
-    return Rotation.from_euler(axis, np.array(angles).reshape(-1, 1)).as_matrix()
+    return Rotation.from_euler(axis, np.asarray(angles).reshape(-1, 1)).as_matrix()
 
 
 def normalize(vs):

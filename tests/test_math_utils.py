@@ -71,6 +71,15 @@ def test_angles_to_matrices_z():
     npt.assert_almost_equal(expected, result)
 
 
+def test_angles_to_matrices_multiple():
+    angles = [np.pi / 2, 0, np.pi]
+    result = test_module.angles_to_matrices(angles, 'x')
+    assert result.shape == (3, 3, 3)
+    npt.assert_almost_equal(result[0], [[1, 0, 0], [0, 0, -1], [0, 1, 0]])
+    npt.assert_almost_equal(result[1], np.eye(3))
+    npt.assert_almost_equal(result[2], [[1, 0, 0], [0, -1, 0], [0, 0, -1]])
+
+
 def test_normalize_empty():
     npt.assert_equal(test_module.normalize([]), [])
 

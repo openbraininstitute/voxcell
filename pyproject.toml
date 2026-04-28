@@ -37,8 +37,8 @@ dependencies = [
 docs = ["sphinx-bluebrain-theme"]
 
 [project.urls]
-Homepage = "https://github.com/OpenBrainInstitute/voxcell"
-Download = "https://github.com/OpenBrainInstitute/voxcell"
+Homepage = "https://github.com/openbraininstitute/voxcell"
+Download = "https://github.com/openbraininstitute/voxcell"
 
 [tool.setuptools.packages.find]
 

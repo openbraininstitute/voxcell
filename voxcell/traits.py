@@ -67,7 +67,7 @@ class SpatialDistribution:
         if unknown_count:
             L.warning('%d total positions in unknown areas', unknown_count)
 
-        valid = np.in1d(dist_id_per_position, self.distributions.columns)
+        valid = np.isin(dist_id_per_position, self.distributions.columns)
         if np.count_nonzero(~valid):
             L.warning('missing distribution for %d positions', np.count_nonzero(~valid))
 

@@ -73,9 +73,10 @@ def _load_property(properties, name, values, library_group=None):
 
 def _is_string_enum(series):
     """Whether ``series`` contains enum of strings."""
-    is_cat_str = (isinstance(series.dtype, pd.CategoricalDtype) and
-                  series.dtype.categories.dtype == object)
-    return series.dtype == object or is_cat_str
+    is_cat_str = isinstance(
+        series.dtype, pd.CategoricalDtype
+    ) and pd.api.types.is_string_dtype(series.dtype.categories)
+    return pd.api.types.is_string_dtype(series) or is_cat_str
 
 
 class CellCollection:
@@ -245,7 +246,7 @@ class CellCollection:
                     f.create_dataset('cells/properties/' + name, data=indices.astype(np.uint32))
                     f.create_dataset('library/' + name, data=unique_values, dtype=str_dt)
                 else:
-                    dt = str_dt if values.dtype == object else values.dtype
+                    dt = str_dt if pd.api.types.is_string_dtype(series) else values.dtype
                     f.create_dataset('cells/properties/' + name, data=values, dtype=dt)
 
     @classmethod
@@ -385,13 +386,15 @@ class CellCollection:
             for name, series in self.properties.items():
                 if name.startswith(self.SONATA_DYNAMIC_PROPERTY):
                     name = name.split(self.SONATA_DYNAMIC_PROPERTY)[1]
-                    dt = str_dt if series.dtype == object else series.dtype
+                    dt = str_dt if pd.api.types.is_string_dtype(series) else series.dtype
                     group.create_dataset(
                         f'dynamics_params/{name}',
                         data=series.to_numpy(),
                         dtype=dt,
                     )
-                elif _is_string_enum(series) or (series.dtype == object and name in forced_library):
+                elif _is_string_enum(series) or (
+                    pd.api.types.is_string_dtype(series) and name in forced_library
+                ):
                     indices, unique_values = series.factorize()
                     if name in forced_library or len(unique_values) < .5 * len(indices):
                         group.create_dataset(name, data=indices.astype(np.uint32))

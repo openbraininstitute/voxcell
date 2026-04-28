@@ -197,6 +197,7 @@ html_show_sourcelink = False
 
 autodoc_default_options = {"members": True}
 autosummary_generate = True
+autodoc_use_legacy_class_based = True
 
 
 # -- Options for LaTeX output ---------------------------------------------
